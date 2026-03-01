@@ -30,9 +30,9 @@ function loadComplaints() {
 
     complaints.forEach((item, index) => {
         let li = document.createElement("li");
-        li.innerHTML = "<b>" + item.name + ":</b> " + item.complaint +
-        " <br><button onclick='deleteComplaint(" + index + ")'>Delete</button>";
-        complaintList.appendChild(li);
+       li.innerHTML = "<b>" + item.name + ":</b> " + 
+(item.complaint || item.text || "No complaint") +
+"<br><button onclick='deleteComplaint(" + index + ")'>Delete</button>";
     });
 }
 
@@ -149,3 +149,4 @@ function loadComplaints() {
 }
 
 window.onload = loadComplaints;
+
