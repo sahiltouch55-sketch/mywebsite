@@ -130,4 +130,22 @@ function adminDelete(index) {
 function adminLogout() {
     localStorage.removeItem("adminLoggedIn");
     window.location.href = "login.html";
+
 }
+function loadComplaints() {
+    const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+    const list = document.getElementById("complaintList");
+
+    if (!list) return;
+
+    list.innerHTML = "";
+
+    complaints.forEach((c, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${c.name}: ${c.text} 
+        <button onclick="deleteComplaint(${index})">Delete</button>`;
+        list.appendChild(li);
+    });
+}
+
+window.onload = loadComplaints;
