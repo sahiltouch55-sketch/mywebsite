@@ -64,3 +64,67 @@ body.auth-body {
 .link-text {
     margin-top: 15px;
 }
+/* ADMIN PANEL STYLING */
+
+.admin-body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.admin-container {
+    background: white;
+    width: 700px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-btn {
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: darkred;
+}
+
+.complaint-list {
+    list-style: none;
+    padding: 0;
+}
+
+.complaint-list li {
+    background: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.complaint-list button {
+    margin-top: 8px;
+    background: #2a5298;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.complaint-list button:hover {
+    background: #1e3c72;
+}
