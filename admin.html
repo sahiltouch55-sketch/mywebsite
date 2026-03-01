@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Admin Panel</h1>
+<button onclick="adminLogout()">Logout</button>
+
+<h2>All User Complaints</h2>
+<ul id="adminComplaintList"></ul>
+
+<script>
+if (!localStorage.getItem("adminLoggedIn")) {
+    window.location.href = "login.html";
+}
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+body {
+    font-family: Arial;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.form-box {
+    margin: 20px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px;
+    width: 200px;
+}
+
+button {
+    padding: 10px 15px;
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: darkgreen;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin: 10px auto;
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+}

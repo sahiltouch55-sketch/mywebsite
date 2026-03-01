@@ -1,0 +1,28 @@
+<button onclick="logout()">Logout</button>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Complaint Management System</h1>
+
+    <div class="form-box">
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="text" id="complaint" placeholder="Enter Complaint">
+        <button onclick="addComplaint()">Submit Complaint</button>
+    </div>
+
+    <h2>All Complaints</h2>
+    <ul id="complaintList"></ul>
+
+   <script>
+if (!localStorage.getItem("loggedInUser")) {
+    window.location.href = "login.html";
+}
+</script> 
+<script src="script.js"></script>
+</body>
+</html>

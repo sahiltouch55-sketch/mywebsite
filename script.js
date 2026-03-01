@@ -1,0 +1,133 @@
+// Page load hone par complaints load karo
+document.addEventListener("DOMContentLoaded", loadComplaints);
+
+function addComplaint() {
+    let name = document.getElementById("name").value;
+    let complaint = document.getElementById("complaint").value;
+
+    if (name === "" || complaint === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+    complaints.push({ name: name, complaint: complaint });
+
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+
+    document.getElementById("name").value = "";
+    document.getElementById("complaint").value = "";
+
+    loadComplaints();
+}
+
+function loadComplaints() {
+    let complaintList = document.getElementById("complaintList");
+    complaintList.innerHTML = "";
+
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+    complaints.forEach((item, index) => {
+        let li = document.createElement("li");
+        li.innerHTML = "<b>" + item.name + ":</b> " + item.complaint +
+        " <br><button onclick='deleteComplaint(" + index + ")'>Delete</button>";
+        complaintList.appendChild(li);
+    });
+}
+
+function deleteComplaint(index) {
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+    complaints.splice(index, 1);
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+    loadComplaints();
+}
+// Signup
+function signup() {
+    let user = document.getElementById("signupUser").value;
+    let pass = document.getElementById("signupPass").value;
+
+    if(user === "" || pass === ""){
+        alert("Fill all fields");
+        return;
+    }
+
+    localStorage.setItem("user", user);
+    localStorage.setItem("pass", pass);
+
+    alert("Signup successful!");
+    window.location.href = "login.html";
+}
+
+// Login
+function login() {
+    let user = document.getElementById("loginUser").value;
+    let pass = document.getElementById("loginPass").value;
+
+    let savedUser = localStorage.getItem("user");
+    let savedPass = localStorage.getItem("pass");
+
+    if(user === savedUser && pass === savedPass){
+        localStorage.setItem("loggedInUser", user);
+        window.location.href = "index.html";
+    } else {
+        alert("Invalid credentials");
+    }
+}
+
+// Logout
+function logout(){
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login.html";
+}
+// Default Admin Account
+if (!localStorage.getItem("adminUser")) {
+    localStorage.setItem("adminUser", "admin");
+    localStorage.setItem("adminPass", "admin123");
+}
+
+// Admin Login Function
+function adminLogin() {
+    let user = document.getElementById("loginUser").value;
+    let pass = document.getElementById("loginPass").value;
+
+    let adminUser = localStorage.getItem("adminUser");
+    let adminPass = localStorage.getItem("adminPass");
+
+    if (user === adminUser && pass === adminPass) {
+        localStorage.setItem("adminLoggedIn", true);
+        window.location.href = "admin.html";
+    }
+}
+
+// Admin Panel Load
+document.addEventListener("DOMContentLoaded", function () {
+    let adminList = document.getElementById("adminComplaintList");
+
+    if (adminList) {
+        adminList.innerHTML = "";
+        let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+        complaints.forEach((item, index) => {
+            let li = document.createElement("li");
+            li.innerHTML =
+                "<b>" + item.name + ":</b> " + item.complaint +
+                " <br><button onclick='adminDelete(" + index + ")'>Delete</button>";
+            adminList.appendChild(li);
+        });
+    }
+});
+
+// Admin Delete
+function adminDelete(index) {
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+    complaints.splice(index, 1);
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+    location.reload();
+}
+
+// Admin Logout
+function adminLogout() {
+    localStorage.removeItem("adminLoggedIn");
+    window.location.href = "login.html";
+}
