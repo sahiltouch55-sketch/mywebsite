@@ -4,16 +4,22 @@
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="auth-body">
 
-<h2>Login</h2>
+<div class="auth-container">
+    <h2>Welcome Back 👋</h2>
+    <p class="subtitle">Login to continue</p>
 
-<input type="text" id="loginUser" placeholder="Username">
-<input type="password" id="loginPass" placeholder="Password">
-<button onclick="login()">Login</button>
-<button onclick="adminLogin()">Login as Admin</button>
+    <input type="text" id="loginUser" placeholder="Username">
+    <input type="password" id="loginPass" placeholder="Password">
 
-<p>Don't have account? <a href="signup.html">Signup</a></p>
+    <button onclick="login()" class="primary-btn">Login</button>
+    <button onclick="adminLogin()" class="secondary-btn">Login as Admin</button>
+
+    <p class="link-text">
+        Don't have account? <a href="signup.html">Signup</a>
+    </p>
+</div>
 
 <script src="script.js"></script>
 </body>
