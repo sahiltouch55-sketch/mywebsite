@@ -149,4 +149,8 @@ function loadComplaints() {
 }
 
 window.onload = loadComplaints;
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login.html";
+}
 
