@@ -67,7 +67,7 @@ cursor:pointer;
 Logout
 </button>
 <h1>Admin Dashboard</h1>
-
+<h3>Total Complaints: <span id="totalComplaints">0</span></h3>
 <h3>All User Complaints</h3>
 
 <ul id="adminComplaintList"></ul>
@@ -85,6 +85,7 @@ if(localStorage.getItem("adminLoggedIn") !== "true"){
     window.location.href = "login.html";
 }
 </script>
+
 
 
 
