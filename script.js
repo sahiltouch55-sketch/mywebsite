@@ -30,9 +30,9 @@ function loadComplaints() {
     complaintList.innerHTML = "";
 
     let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-
+let loggedUser = localStorage.getItem("loggedInUser");
     complaints.forEach((item, index) => {
-
+if(item.name !== loggedUser) return;
         let li = document.createElement("li");
 
         let name = item.name || "Unknown";
@@ -164,6 +164,7 @@ function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "login.html";
 }
+
 
 
 
