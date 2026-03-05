@@ -53,8 +53,8 @@ function deleteComplaint(index) {
     localStorage.setItem("complaints", JSON.stringify(complaints));
     loadComplaints();
 }
+// Signup
 function signup(){
-
 let user = document.getElementById("signupUser").value;
 let pass = document.getElementById("signupPass").value;
 
@@ -78,21 +78,26 @@ window.location.href = "login.html";
 
 }
 // Login
-function login() {
-    let user = document.getElementById("loginUser").value;
-    let pass = document.getElementById("loginPass").value;
+function login(){
 
-   let savedUser = localStorage.getItem("user");
-let savedPass = localStorage.getItem("pass");
+let user = document.getElementById("loginUser").value;
+let pass = document.getElementById("loginPass").value;
 
-if(user == savedUser && pass == savedPass){
+let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if(user === savedUser && pass === savedPass){
-        localStorage.setItem("loggedInUser", user);
-        window.location.href = "index.html";
-    } else {
-        alert("Invalid credentials");
-    }
+let validUser = users.find(u => u.username === user && u.password === pass);
+
+if(validUser){
+
+localStorage.setItem("loggedInUser", user);
+window.location.href = "index.html";
+
+}else{
+
+alert("Invalid credentials");
+
+}
+
 }
 
 // Logout
@@ -173,6 +178,7 @@ function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "login.html";
 }
+
 
 
 
