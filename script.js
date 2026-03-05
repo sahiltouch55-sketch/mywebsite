@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", loadComplaints);
 
 function addComplaint() {
+
     let name = document.getElementById("name").value;
     let complaint = document.getElementById("complaint").value;
 
@@ -9,6 +10,25 @@ function addComplaint() {
         alert("Please fill all fields");
         return;
     }
+
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+    let date = new Date().toLocaleString();
+
+    complaints.push({
+        name: name,
+        complaint: complaint,
+        status: "Pending",
+        date: date
+    });
+
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+
+    document.getElementById("name").value = "";
+    document.getElementById("complaint").value = "";
+
+    loadComplaints();
+}
 
     let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
@@ -30,17 +50,19 @@ function loadComplaints() {
     complaintList.innerHTML = "";
 
     let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-let loggedUser = localStorage.getItem("loggedInUser");
+
+    document.getElementById("totalComplaints").innerText = complaints.length;
+
     complaints.forEach((item, index) => {
-if(item.name !== loggedUser) return;
+
         let li = document.createElement("li");
 
-        let name = item.name || "Unknown";
-        let complaint = item.complaint || "No complaint";
-
         li.innerHTML =
-            "<b>" + name + "</b>: " +
-            complaint +
+            "<b>" + item.name + "</b>: " +
+            item.complaint +
+            " | Status: " + item.status +
+            " | Date: " + item.date +
+            " <button onclick='resolveComplaint(" + index + ")'>Resolve</button>" +
             " <button onclick='deleteComplaint(" + index + ")'>Delete</button>";
 
         complaintList.appendChild(li);
@@ -181,6 +203,16 @@ function logout() {
 function adminLogout(){
     localStorage.removeItem("adminLoggedIn");
     window.location.href = "login.html";
+}
+function resolveComplaint(index) {
+
+    let complaints = JSON.parse(localStorage.getItem("complaints"));
+
+    complaints[index].status = "Resolved";
+
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+
+    loadComplaints();
 }
 
 
