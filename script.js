@@ -120,7 +120,7 @@ function adminLogin() {
     let adminPass = localStorage.getItem("adminPass");
 
     if (user === adminUser && pass === adminPass) {
-        localStorage.setItem("adminLoggedIn", true);
+       localStorage.setItem("adminLoggedIn", "true");
         window.location.href = "admin.html";
     }
 }
@@ -182,6 +182,7 @@ function adminLogout(){
     localStorage.removeItem("adminLoggedIn");
     window.location.href = "login.html";
 }
+
 
 
 
