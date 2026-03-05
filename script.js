@@ -196,10 +196,7 @@ function loadComplaints() {
 }
 
 window.onload = loadComplaints;
-function logout() {
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "login.html";
-}
+
 function adminLogout(){
     localStorage.removeItem("adminLoggedIn");
     window.location.href = "login.html";
@@ -218,6 +215,7 @@ function logout() {
     localStorage.removeItem("adminLoggedIn");
     window.location.href = "login.html";
 }
+
 
 
 
