@@ -2,28 +2,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Complaint Management System</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<button onclick="logout()">Logout</button>
-    <h1>Complaint Management System</h1>
+<title>Complaint System</title>
 
-    <div class="form-box">
-        <input type="text" id="name" placeholder="Your Name">
-        <input type="text" id="complaint" placeholder="Enter Complaint">
-        <button onclick="addComplaint()">Submit Complaint</button>
-    </div>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
-    <h2>All Complaints</h2>
-    <ul id="complaintList"></ul>
+<style>
 
-   <script>
-if (!localStorage.getItem("loggedInUser")) {
-    window.location.href = "login.html";
+body{
+font-family:'Poppins',sans-serif;
+background:#f4f6fb;
+margin:0;
+padding:20px;
 }
-</script> 
-<script src="script.js"></script>
-</body>
 
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:40%;
+padding:10px;
+margin:10px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+padding:10px 15px;
+background:#4facfe;
+border:none;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#0077ff;
+}
+
+li{
+margin:10px 0;
+}
+
+.logout{
+float:right;
+background:#ff4d4d;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<button class="logout" onclick="logout()">Logout</button>
+
+<h1>Complaint Management System</h1>
+
+<input type="text" id="name" placeholder="Your Name">
+<input type="text" id="complaint" placeholder="Enter Complaint">
+
+<button onclick="addComplaint()">Submit Complaint</button>
+
+<h3>My Complaints</h3>
+
+<ul id="complaintList"></ul>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
 </html>
