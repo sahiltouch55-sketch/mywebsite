@@ -153,8 +153,8 @@ function loadComplaints() {
 
     complaints.forEach((c, index) => {
         const li = document.createElement("li");
-        li.innerHTML = `${c.name}: ${c.text} 
-        <button onclick="deleteComplaint(${index})">Delete</button>`;
+        li.innerHTML = `${c.name}: ${c.complaint}
+<button onclick="deleteComplaint(${index})">Delete</button>`;
         list.appendChild(li);
     });
 }
@@ -164,6 +164,7 @@ function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "login.html";
 }
+
 
 
 
