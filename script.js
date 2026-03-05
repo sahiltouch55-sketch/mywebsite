@@ -53,30 +53,39 @@ function deleteComplaint(index) {
     localStorage.setItem("complaints", JSON.stringify(complaints));
     loadComplaints();
 }
-// Signup
-function signup() {
-    let user = document.getElementById("signupUser").value;
-    let pass = document.getElementById("signupPass").value;
+function signup(){
 
-    if(user === "" || pass === ""){
-        alert("Fill all fields");
-        return;
-    }
+let user = document.getElementById("signupUser").value;
+let pass = document.getElementById("signupPass").value;
 
-    localStorage.setItem("user", user);
-    localStorage.setItem("pass", pass);
-
-    alert("Signup successful!");
-    window.location.href = "login.html";
+if(user === "" || pass === ""){
+alert("Fill all fields");
+return;
 }
 
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+users.push({
+username: user,
+password: pass
+});
+
+localStorage.setItem("users", JSON.stringify(users));
+
+alert("Signup successful");
+
+window.location.href = "login.html";
+
+}
 // Login
 function login() {
     let user = document.getElementById("loginUser").value;
     let pass = document.getElementById("loginPass").value;
 
-    let savedUser = localStorage.getItem("user");
-    let savedPass = localStorage.getItem("pass");
+   let savedUser = localStorage.getItem("user");
+let savedPass = localStorage.getItem("pass");
+
+if(user == savedUser && pass == savedPass){
 
     if(user === savedUser && pass === savedPass){
         localStorage.setItem("loggedInUser", user);
@@ -164,6 +173,7 @@ function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "login.html";
 }
+
 
 
 
