@@ -23,8 +23,8 @@ function addComplaint() {
 }
 
 function loadComplaints() {
-    let complaintList = document.getElementById("complaintList");
 
+    let complaintList = document.getElementById("complaintList");
     if (!complaintList) return;
 
     complaintList.innerHTML = "";
@@ -32,17 +32,21 @@ function loadComplaints() {
     let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
     complaints.forEach((item, index) => {
+
         let li = document.createElement("li");
 
-       li.innerHTML =
-"<b>" + item.name + "</b>: " +
-item.complaint +
-" <button onclick='deleteComplaint(" + index + ")'>Delete</button>";
+        let name = item.name || "Unknown";
+        let complaint = item.complaint || "No complaint";
+
+        li.innerHTML =
+            "<b>" + name + "</b>: " +
+            complaint +
+            " <button onclick='deleteComplaint(" + index + ")'>Delete</button>";
 
         complaintList.appendChild(li);
+
     });
 }
-
 function deleteComplaint(index) {
     let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
     complaints.splice(index, 1);
@@ -160,6 +164,7 @@ function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "login.html";
 }
+
 
 
 
