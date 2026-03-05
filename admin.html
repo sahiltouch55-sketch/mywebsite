@@ -1,22 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+<title>Admin Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f4f6fb;
+padding:20px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+}
+
+li{
+margin:10px 0;
+padding:10px;
+background:#f7f7f7;
+border-radius:5px;
+}
+
+button{
+margin-left:10px;
+padding:6px 10px;
+background:#ff4d4d;
+border:none;
+color:white;
+border-radius:4px;
+cursor:pointer;
+}
+
+button:hover{
+background:#e60000;
+}
+
+</style>
 </head>
-<body class="admin-body">
 
-    <div class="admin-container">
-        <div class="admin-header">
-            <h1>Admin Dashboard</h1>
-           <button class="logout-btn" onclick="logout()">Logout</button>
-        </div>
+<body>
 
-        <h2>All User Complaints</h2>
-        <ul id="complaintList" class="complaint-list"></ul>
-    </div>
+<div class="container">
 
-    <script src="script.js"></script>
+<h1>Admin Dashboard</h1>
+
+<h3>All User Complaints</h3>
+
+<ul id="adminComplaintList"></ul>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
+
 
