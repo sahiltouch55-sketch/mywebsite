@@ -34,10 +34,10 @@ function loadComplaints() {
     complaints.forEach((item, index) => {
         let li = document.createElement("li");
 
-        li.innerHTML =
-            "<b>" + item.name + "</b>: " +
-            item.complaint +
-            " <button onclick='deleteComplaint(" + index + ")'>Delete</button>";
+       li.innerHTML =
+"<b>" + item.name + "</b>: " +
+item.complaint +
+" <button onclick='deleteComplaint(" + index + ")'>Delete</button>";
 
         complaintList.appendChild(li);
     });
@@ -160,6 +160,7 @@ function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "login.html";
 }
+
 
 
 
