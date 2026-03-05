@@ -214,6 +214,10 @@ function resolveComplaint(index) {
 
     loadComplaints();
 }
+function logout() {
+    localStorage.removeItem("adminLoggedIn");
+    window.location.href = "login.html";
+}
 
 
 
