@@ -81,8 +81,8 @@ let user = document.getElementById("signupUser").value;
 let pass = document.getElementById("signupPass").value;
 
 if(user === "" || pass === ""){
-alert("Fill all fields");
-return;
+    alert("Fill all fields");
+    return;
 }
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -215,6 +215,7 @@ function logout() {
     localStorage.removeItem("adminLoggedIn");
     window.location.href = "login.html";
 }
+
 
 
 
