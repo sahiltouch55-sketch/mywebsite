@@ -47,7 +47,6 @@ alert("Invalid credentials");
 
 }
 
-
 // ================= USER LOGOUT =================
 function logout(){
 
@@ -154,3 +153,4 @@ loadComplaints();
 window.onload = function(){
 loadComplaints();
 };
+
