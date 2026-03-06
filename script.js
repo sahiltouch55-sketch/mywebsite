@@ -125,9 +125,8 @@ complaints.forEach((c,index)=>{
 
 let li = document.createElement("li");
 
-li.innerHTML = c.name + ": " + c.complaint +
-' <button onclick="deleteComplaint('+index+')">Delete</button>';
-
+li.innerHTML = c.name + ": " + c.text +
+"<button onclick='deleteComplaint("+index+")'>Delete</button>";
 list.appendChild(li);
 
 });
@@ -153,5 +152,6 @@ loadComplaints();
 window.onload = function(){
 loadComplaints();
 };
+
 
 
