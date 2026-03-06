@@ -100,7 +100,7 @@ let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
 complaints.push({
 name:name,
-complaint:complaint
+text:complaint
 });
 
 localStorage.setItem("complaints", JSON.stringify(complaints));
@@ -175,6 +175,7 @@ list.appendChild(li);
 });
 
 }
+
 
 
 
