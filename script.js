@@ -152,6 +152,29 @@ loadComplaints();
 window.onload = function(){
 loadComplaints();
 };
+function loadAdminComplaints(){
+
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+let list = document.getElementById("adminComplaintList");
+let total = document.getElementById("totalComplaints");
+
+if(!list) return;
+
+list.innerHTML = "";
+total.innerText = complaints.length;
+
+complaints.forEach((c,index)=>{
+
+let li = document.createElement("li");
+
+li.innerHTML = c.name + ": " + c.text;
+
+list.appendChild(li);
+
+});
+
+}
 
 
 
