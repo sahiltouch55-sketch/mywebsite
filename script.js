@@ -64,10 +64,10 @@ let pass = document.getElementById("adminPass").value;
 
 if(user === "admin" && pass === "admin123"){
 
-localStorage.setItem("adminLoggedIn", "true");
+localStorage.setItem("adminLoggedIn","true");
 window.location.href = "admin.html";
 
-}else{
+} else {
 
 alert("Wrong admin credentials");
 
@@ -153,4 +153,5 @@ loadComplaints();
 window.onload = function(){
 loadComplaints();
 };
+
 
