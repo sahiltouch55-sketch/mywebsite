@@ -1,88 +1,12 @@
-// Page load hone par complaints load karo
-document.addEventListener("DOMContentLoaded", loadComplaints);
-
-function addComplaint() {
-
-    let name = document.getElementById("name").value;
-    let complaint = document.getElementById("complaint").value;
-
-    if (name === "" || complaint === "") {
-        alert("Please fill all fields");
-        return;
-    }
-
-    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-
-    let date = new Date().toLocaleString();
-
-    complaints.push({
-        name: name,
-        complaint: complaint,
-        status: "Pending",
-        date: date
-    });
-
-    localStorage.setItem("complaints", JSON.stringify(complaints));
-
-    document.getElementById("name").value = "";
-    document.getElementById("complaint").value = "";
-
-    loadComplaints();
-}
-
-    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-
-    complaints.push({ name: name, complaint: complaint });
-
-    localStorage.setItem("complaints", JSON.stringify(complaints));
-
-    document.getElementById("name").value = "";
-    document.getElementById("complaint").value = "";
-
-    loadComplaints();
-}
-
-function loadComplaints() {
-
-    let complaintList = document.getElementById("complaintList");
-    if (!complaintList) return;
-
-    complaintList.innerHTML = "";
-
-    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-
-    document.getElementById("totalComplaints").innerText = complaints.length;
-
-    complaints.forEach((item, index) => {
-
-        let li = document.createElement("li");
-
-        li.innerHTML =
-            "<b>" + item.name + "</b>: " +
-            item.complaint +
-            " | Status: " + item.status +
-            " | Date: " + item.date +
-            " <button onclick='resolveComplaint(" + index + ")'>Resolve</button>" +
-            " <button onclick='deleteComplaint(" + index + ")'>Delete</button>";
-
-        complaintList.appendChild(li);
-
-    });
-}
-function deleteComplaint(index) {
-    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-    complaints.splice(index, 1);
-    localStorage.setItem("complaints", JSON.stringify(complaints));
-    loadComplaints();
-}
-// Signup
+// ================= USER SIGNUP =================
 function signup(){
+
 let user = document.getElementById("signupUser").value;
 let pass = document.getElementById("signupPass").value;
 
 if(user === "" || pass === ""){
-    alert("Fill all fields");
-    return;
+alert("Fill all fields");
+return;
 }
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -95,11 +19,12 @@ password: pass
 localStorage.setItem("users", JSON.stringify(users));
 
 alert("Signup successful");
-
 window.location.href = "login.html";
 
 }
-// Login
+
+
+// ================= USER LOGIN =================
 function login(){
 
 let user = document.getElementById("loginUser").value;
@@ -122,115 +47,110 @@ alert("Invalid credentials");
 
 }
 
-// Logout
+
+// ================= USER LOGOUT =================
 function logout(){
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "login.html";
-}
-// Default Admin Account
-if (!localStorage.getItem("adminUser")) {
-    localStorage.setItem("adminUser", "admin");
-    localStorage.setItem("adminPass", "admin123");
+
+localStorage.removeItem("loggedInUser");
+window.location.href = "login.html";
+
 }
 
-// Admin Login Function
-function adminLogin() {
-    let user = document.getElementById("loginUser").value;
-    let pass = document.getElementById("loginPass").value;
 
-    let adminUser = localStorage.getItem("adminUser");
-    let adminPass = localStorage.getItem("adminPass");
+// ================= ADMIN LOGIN =================
+function adminLogin(){
 
-    if (user === adminUser && pass === adminPass) {
-       localStorage.setItem("adminLoggedIn", "true");
-        window.location.href = "admin.html";
-    }
+let user = document.getElementById("adminUser").value;
+let pass = document.getElementById("adminPass").value;
+
+if(user === "admin" && pass === "admin123"){
+
+localStorage.setItem("adminLoggedIn", "true");
+window.location.href = "admin.html";
+
+}else{
+
+alert("Wrong admin credentials");
+
 }
 
-// Admin Panel Load
-document.addEventListener("DOMContentLoaded", function () {
-    let adminList = document.getElementById("adminComplaintList");
+}
 
-    if (adminList) {
-        adminList.innerHTML = "";
-        let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
-        complaints.forEach((item, index) => {
-            let li = document.createElement("li");
-            li.innerHTML =
-                "<b>" + item.name + ":</b> " + item.complaint +
-                " <br><button onclick='adminDelete(" + index + ")'>Delete</button>";
-            adminList.appendChild(li);
-        });
-    }
+// ================= ADMIN LOGOUT =================
+function adminLogout(){
+
+localStorage.removeItem("adminLoggedIn");
+window.location.href = "login.html";
+
+}
+
+
+// ================= ADD COMPLAINT =================
+function addComplaint(){
+
+let name = document.getElementById("name").value;
+let complaint = document.getElementById("complaint").value;
+
+if(name === "" || complaint === ""){
+alert("Fill all fields");
+return;
+}
+
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+complaints.push({
+name:name,
+complaint:complaint
 });
 
-// Admin Delete
-function adminDelete(index) {
-    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-    complaints.splice(index, 1);
-    localStorage.setItem("complaints", JSON.stringify(complaints));
-    location.reload();
-}
+localStorage.setItem("complaints", JSON.stringify(complaints));
 
-// Admin Logout
-function adminLogout() {
-    localStorage.removeItem("adminLoggedIn");
-    window.location.href = "login.html";
+loadComplaints();
 
 }
-function loadComplaints() {
-    const complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-    const list = document.getElementById("complaintList");
 
-    if (!list) return;
 
-    list.innerHTML = "";
+// ================= LOAD COMPLAINT =================
+function loadComplaints(){
 
-    complaints.forEach((c, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `${c.name}: ${c.complaint}
-<button onclick="deleteComplaint(${index})">Delete</button>`;
-        list.appendChild(li);
-    });
-}
+let list = document.getElementById("complaintList");
 
-window.onload = loadComplaints;
+if(!list) return;
 
-function adminLogout(){
-    localStorage.clear()
-    window.location.href = "login.html";
-}
-function resolveComplaint(index) {
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
-    let complaints = JSON.parse(localStorage.getItem("complaints"));
+list.innerHTML = "";
 
-    complaints[index].status = "Resolved";
+complaints.forEach((c,index)=>{
 
-    localStorage.setItem("complaints", JSON.stringify(complaints));
+let li = document.createElement("li");
 
-    loadComplaints();
-}
-function logout() {
-    localStorage.removeItem("adminLoggedIn");
-    window.location.href = "login.html";
+li.innerHTML = c.name + ": " + c.complaint +
+' <button onclick="deleteComplaint('+index+')">Delete</button>';
+
+list.appendChild(li);
+
+});
+
 }
 
 
+// ================= DELETE COMPLAINT =================
+function deleteComplaint(index){
+
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+complaints.splice(index,1);
+
+localStorage.setItem("complaints", JSON.stringify(complaints));
+
+loadComplaints();
+
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ================= PAGE LOAD =================
+window.onload = function(){
+loadComplaints();
+};
