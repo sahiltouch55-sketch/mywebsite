@@ -118,11 +118,10 @@ let list = document.getElementById("complaintList");
 if(!list) return;
 
 let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-
+let currentUser = localStorage.getItem("currentUser");
 list.innerHTML = "";
 
-complaints.forEach((c)=>{
-
+complaints.filter(c => c.name === currentUser).forEach((c)=>{
 let li = document.createElement("li");
 
 li.innerText = c.name + " - " + c.text + " - " + c.status;
@@ -217,6 +216,7 @@ localStorage.setItem("complaints", JSON.stringify(complaints));
 loadAdminComplaints();
 
 }
+
 
 
 
