@@ -25,24 +25,21 @@ window.location.href = "login.html";
 
 
 // ================= USER LOGIN =================
-function login(){
+function loginUser(){
 
-let user = document.getElementById("loginUser").value;
-let pass = document.getElementById("loginPass").value;
+let username = document.getElementById("username").value;
+let password = document.getElementById("password").value;
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
 
-let validUser = users.find(u => u.username === user && u.password === pass);
+let found = users.find(u => u.username === username && u.password === password);
 
-if(validUser){
-
-localStorage.setItem("loggedInUser", user);
+if(found){
+alert("Login Successful");
 window.location.href = "index.html";
-
-}else{
-
-alert("Invalid credentials");
-
+}
+else{
+alert("Invalid Username or Password");
 }
 
 }
@@ -221,6 +218,7 @@ localStorage.setItem("complaints", JSON.stringify(complaints));
 loadAdminComplaints();
 
 }
+
 
 
 
