@@ -36,6 +36,9 @@ let found = users.find(u => u.username === username && u.password === password);
 
 if(found){
 alert("Login Successful");
+
+localStorage.setItem("currentUser", username);
+
 window.location.href = "index.html";
 }
 else{
@@ -217,6 +220,7 @@ localStorage.setItem("complaints", JSON.stringify(complaints));
 loadAdminComplaints();
 
 }
+
 
 
 
