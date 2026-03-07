@@ -219,6 +219,9 @@ loadAdminComplaints();
 
 }
 
+function loginUser(){
+alert("Login working");
+}
 
 
 
