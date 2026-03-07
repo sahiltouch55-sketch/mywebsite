@@ -218,9 +218,7 @@ loadAdminComplaints();
 
 }
 
-function loginUser(){
 
-}
 
 
 
