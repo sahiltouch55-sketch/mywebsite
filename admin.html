@@ -70,7 +70,20 @@ Logout
 <h3>Total Complaints: <span id="totalComplaints">0</span></h3>
 <h3>All User Complaints</h3>
 
-<ul id="adminComplaintList"></ul>
+<table border="1" width="100%" id="complaintTable">
+<thead>
+<tr>
+<th>Name</th>
+<th>Complaint</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="adminComplaintList">
+</tbody>
+
+</table>
 
 </div>
 
@@ -93,6 +106,7 @@ loadAdminComplaints();
 
 </body>
 </html>
+
 
 
 
