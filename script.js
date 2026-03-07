@@ -200,14 +200,15 @@ complaints.forEach((c,index)=>{
 
 let tr = document.createElement("tr");
 
-li.innerHTML = c.name + ": " + c.text +
-" - <b>"+c.status+"</b> " +
-"<button onclick='resolveComplaint("+index+")'>Resolve</button>";
+tr.innerHTML =
+"<td>"+c.name+"</td>" +
+"<td>"+c.text+"</td>" +
+"<td>"+c.status+"</td>" +
+"<td><button onclick='resolveComplaint("+index+")'>Resolve</button></td>";
 
-list.appendChild(li);
+list.appendChild(tr);
 
 });
-
 }
 function resolveComplaint(index){
 
@@ -220,6 +221,7 @@ localStorage.setItem("complaints", JSON.stringify(complaints));
 loadAdminComplaints();
 
 }
+
 
 
 
