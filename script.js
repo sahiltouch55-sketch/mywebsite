@@ -100,7 +100,8 @@ let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
 complaints.push({
 name:name,
-text:complaint
+text:complaint,
+  status:"pending"
 });
 
 localStorage.setItem("complaints", JSON.stringify(complaints));
@@ -126,6 +127,7 @@ complaints.forEach((c,index)=>{
 let li = document.createElement("li");
 
 li.innerHTML = c.name + ": " + c.text +
+  " - <b>"+c.status+"</b> " +
 "<button onclick='deleteComplaint("+index+")'>Delete</button>";
 list.appendChild(li);
 
@@ -150,7 +152,10 @@ loadComplaints();
 
 // ================= PAGE LOAD =================
 window.onload = function(){
-loadComplaints();
+
+  loadComplaints();
+loadAdminComplaints();
+  
 };
 function loadAdminComplaints(){
 
@@ -175,7 +180,44 @@ list.appendChild(li);
 });
 
 }
+// ================= ADMIN LOAD COMPLAINTS =================
 
+function loadAdminComplaints(){
+
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+let list = document.getElementById("adminComplaintList");
+let total = document.getElementById("totalComplaints");
+
+if(!list) return;
+
+list.innerHTML = "";
+total.innerText = complaints.length;
+
+complaints.forEach((c,index)=>{
+
+let li = document.createElement("li");
+
+li.innerHTML = c.name + ": " + c.text +
+" - <b>"+c.status+"</b> " +
+"<button onclick='resolveComplaint("+index+")'>Resolve</button>";
+
+list.appendChild(li);
+
+});
+
+}
+function resolveComplaint(index){
+
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+complaints[index].status = "Resolved";
+
+localStorage.setItem("complaints", JSON.stringify(complaints));
+
+loadAdminComplaints();
+
+}
 
 
 
