@@ -129,7 +129,6 @@ tr.innerHTML =
 "<td>"+c.name+"</td>" +
 "<td>"+c.text+"</td>" +
 "<td>"+c.status+"</td>" +
-"<td><button onclick='resolveComplaint("+index+")'>Resolve</button></td>";
 list.appendChild(tr);
 
 });
@@ -220,6 +219,7 @@ localStorage.setItem("complaints", JSON.stringify(complaints));
 loadAdminComplaints();
 
 }
+
 
 
 
