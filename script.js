@@ -43,7 +43,6 @@ alert("Invalid Username or Password");
 }
 
 }
-
 // ================= USER LOGOUT =================
 function logout(){
 
@@ -222,6 +221,7 @@ loadAdminComplaints();
 function loginUser(){
 alert("Login working");
 }
+
 
 
 
