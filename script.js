@@ -124,12 +124,14 @@ list.innerHTML = "";
 
 complaints.forEach((c,index)=>{
 
-let li = document.createElement("li");
+let tr = document.createElement("li");
 
-li.innerHTML = c.name + ": " + c.text +
-  " - <b>"+c.status+"</b> " +
-"<button onclick='deleteComplaint("+index+")'>Delete</button>";
-list.appendChild(li);
+tr.innerHTML =
+"<td>"+c.name+"</td>" +
+"<td>"+c.text+"</td>" +
+"<td>"+c.status+"</td>" +
+"<td><button onclick='resolveComplaint("+index+")'>Resolve</button></td>";
+list.appendChild(tr);
 
 });
 
@@ -196,7 +198,7 @@ total.innerText = complaints.length;
 
 complaints.forEach((c,index)=>{
 
-let li = document.createElement("li");
+let tr = document.createElement("tr");
 
 li.innerHTML = c.name + ": " + c.text +
 " - <b>"+c.status+"</b> " +
@@ -218,6 +220,7 @@ localStorage.setItem("complaints", JSON.stringify(complaints));
 loadAdminComplaints();
 
 }
+
 
 
 
