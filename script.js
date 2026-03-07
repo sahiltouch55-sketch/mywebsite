@@ -121,15 +121,13 @@ let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
 list.innerHTML = "";
 
-complaints.forEach((c,index)=>{
+complaints.forEach((c)=>{
 
-let tr = document.createElement("li");
+let li = document.createElement("li");
 
-tr.innerHTML =
-"<td>"+c.name+"</td>" +
-"<td>"+c.text+"</td>" +
-"<td>"+c.status+"</td>" +
-list.appendChild(tr);
+li.innerText = c.name + " - " + c.text + " - " + c.status;
+
+list.appendChild(li);
 
 });
 
@@ -219,6 +217,7 @@ localStorage.setItem("complaints", JSON.stringify(complaints));
 loadAdminComplaints();
 
 }
+
 
 
 
