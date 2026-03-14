@@ -86,8 +86,7 @@ window.location.href = "login.html";
 
 // ================= ADD COMPLAINT =================
 function addComplaint(){
-let complaintId = "C" + Math.floor(Math.random()*10000);
-  let date = new Date().toLocaleString();
+
 let name = document.getElementById("name").value;
 let complaint = document.getElementById("complaint").value;
 
@@ -98,6 +97,8 @@ return;
 
 let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
+  let complaintId = "C" + Math.floor(Math.random()*10000);
+  let date = new Date().toLocaleString();
 complaints.push({
 name:name,
 text:complaint,
