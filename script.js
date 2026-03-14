@@ -86,7 +86,8 @@ window.location.href = "login.html";
 
 // ================= ADD COMPLAINT =================
 function addComplaint(){
-
+let complaintId = "C" + Math.floor(Math.random()*10000);
+  let date = new Date().toLocaleString();
 let name = document.getElementById("name").value;
 let complaint = document.getElementById("complaint").value;
 
@@ -101,6 +102,7 @@ complaints.push({
 name:name,
 text:complaint,
   status:"pending"
+  date:date
 });
 
 localStorage.setItem("complaints", JSON.stringify(complaints));
@@ -124,7 +126,12 @@ list.innerHTML = "";
 complaints.filter(c => c.name === currentUser).forEach((c)=>{
 let li = document.createElement("li");
 
-li.innerText = c.name + " - " + c.text + " - " + c.status;
+li.innerText =
+c.id + " | " +
+c.name + " | " +
+c.text + " | " +
+c.status + " | " +
+c.date;
 
 list.appendChild(li);
 
