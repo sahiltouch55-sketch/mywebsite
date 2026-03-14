@@ -102,7 +102,7 @@ let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 complaints.push({
 name:name,
 text:complaint,
-  status:"pending",
+  status:"Pending",
   date:date
 });
 
