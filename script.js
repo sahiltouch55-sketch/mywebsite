@@ -100,6 +100,7 @@ let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
   let complaintId = "C" + Math.floor(Math.random()*10000);
   let date = new Date().toLocaleString();
 complaints.push({
+  id:complaintld,
 name:name,
 text:complaint,
   status:"Pending",
