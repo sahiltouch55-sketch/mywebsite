@@ -75,7 +75,10 @@ function addComplaint(){
 let nameField = document.getElementById("name");
 let complaintField = document.getElementById("complaint");
 
-if(!nameField || !complaintField) return;
+if(!nameField || !complaintField){
+alert("Form not found");
+return;
+}
 
 let name = nameField.value;
 let complaint = complaintField.value;
@@ -85,25 +88,27 @@ alert("Fill all fields");
 return;
 }
 
-let data = {
-id: "C" + Math.floor(Math.random()*10000),
-name: name,
-text: complaint,
-status: "Pending",
-date: new Date().toLocaleString()
-};
-
 fetch("http://localhost:3000/add",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body: JSON.stringify(data)
+body: JSON.stringify({
+id: "C" + Math.floor(Math.random()*10000),
+name: name,
+text: complaint,
+status: "Pending",
+date: new Date().toLocaleString()
+})
 })
 .then(res => res.text())
 .then(msg => {
 alert(msg);
 loadComplaints();
+})
+.catch(err => {
+console.log(err);
+alert("Server not connected");
 });
 
 }
