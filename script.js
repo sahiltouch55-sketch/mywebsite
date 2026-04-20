@@ -24,8 +24,8 @@ window.location.href = "login.html";
 
 // ================= USER LOGIN =================
 function loginUser(){
-let username = document.getElementById("username")?.value;
-let password = document.getElementById("password")?.value;
+let username = document.getElementById("username").value.trim();
+let password = document.getElementById("password").value.trim();
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
 
