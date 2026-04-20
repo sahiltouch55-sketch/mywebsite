@@ -143,10 +143,7 @@ let total = document.getElementById("totalComplaints");
 if(!list) return;
 
 list.innerHTML = "";
-
-if(total){
 total.innerText = complaints.length;
-}
 
 complaints.forEach((c,index)=>{
 
@@ -162,8 +159,6 @@ list.appendChild(tr);
 
 });
 }
-
-
 // ================= RESOLVE COMPLAINT (FRONTEND ONLY) =================
 function resolveComplaint(index){
 alert("Connect this to backend for real update");
