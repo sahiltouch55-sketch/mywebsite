@@ -73,7 +73,7 @@ window.location.href = "login.html";
 
 function addComplaint(){
 
-let name = document.getElementById("name").value;
+let name = localStorage.getItem("currentUser");
 let complaint = document.getElementById("complaint").value;
 
 if(name === "" || complaint === ""){
