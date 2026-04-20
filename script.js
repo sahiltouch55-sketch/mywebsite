@@ -135,19 +135,20 @@ list.appendChild(tr);
 // ================= ADMIN LOAD COMPLAINTS =================
 function loadAdminComplaints(){
 
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
 let list = document.getElementById("adminComplaintList");
 let total = document.getElementById("totalComplaints");
 
 if(!list) return;
 
-fetch("http://localhost:3000/all")
-.then(res => res.json())
-.then(data => {
-
 list.innerHTML = "";
-if(total) total.innerText = data.length;
 
-data.forEach((c,index)=>{
+if(total){
+total.innerText = complaints.length;
+}
+
+complaints.forEach((c,index)=>{
 
 let tr = document.createElement("tr");
 
@@ -160,9 +161,6 @@ tr.innerHTML =
 list.appendChild(tr);
 
 });
-
-});
-
 }
 
 
