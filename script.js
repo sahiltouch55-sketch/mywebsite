@@ -70,49 +70,35 @@ window.location.href = "login.html";
 
 
 // ================= ADD COMPLAINT (MYSQL) =================
+
 function addComplaint(){
 
-let nameField = document.getElementById("name");
-let complaintField = document.getElementById("complaint");
-
-if(!nameField || !complaintField){
-alert("Form not found");
-return;
-}
-
-let name = nameField.value;
-let complaint = complaintField.value;
+let name = document.getElementById("name").value;
+let complaint = document.getElementById("complaint").value;
 
 if(name === "" || complaint === ""){
 alert("Fill all fields");
 return;
 }
 
-fetch("http://localhost:3000/add",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body: JSON.stringify({
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+let newComplaint = {
 id: "C" + Math.floor(Math.random()*10000),
 name: name,
 text: complaint,
 status: "Pending",
 date: new Date().toLocaleString()
-})
-})
-.then(res => res.text())
-.then(msg => {
-alert(msg);
+};
+
+complaints.push(newComplaint);
+
+localStorage.setItem("complaints", JSON.stringify(complaints));
+
+alert("Complaint Submitted ✅");
+
 loadComplaints();
-})
-.catch(err => {
-console.log(err);
-alert("Server not connected");
-});
-
 }
-
 
 // ================= LOAD USER COMPLAINTS =================
 function loadComplaints(){
@@ -120,17 +106,14 @@ function loadComplaints(){
 let list = document.getElementById("complaintList");
 if(!list) return;
 
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 let currentUser = localStorage.getItem("currentUser");
-
-fetch("http://localhost:3000/all")
-.then(res => res.json())
-.then(data => {
 
 list.innerHTML = "";
 
-data
+complaints
 .filter(c => c.name === currentUser)
-.forEach((c)=>{
+.forEach(c => {
 
 let li = document.createElement("li");
 
@@ -144,12 +127,7 @@ c.date;
 list.appendChild(li);
 
 });
-
-});
-
 }
-
-
 // ================= ADMIN LOAD COMPLAINTS =================
 function loadAdminComplaints(){
 
