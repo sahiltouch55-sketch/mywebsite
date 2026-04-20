@@ -111,18 +111,22 @@ let currentUser = localStorage.getItem("currentUser");
 
 list.innerHTML = "";
 
+// login check
 if(!currentUser){
 list.innerHTML = "<li>Please login first</li>";
 return;
 }
 
-let userComplaints = complaints.filter(c => c.name === currentUser);
+// filter user complaints
+let userComplaints = complaints.filter(c => c.name == currentUser);
 
+// no data case
 if(userComplaints.length === 0){
 list.innerHTML = "<li>No complaints found</li>";
 return;
 }
 
+// show data
 userComplaints.forEach((c)=>{
 let li = document.createElement("li");
 
