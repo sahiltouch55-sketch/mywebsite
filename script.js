@@ -101,30 +101,34 @@ loadComplaints();
 }
 
 // ================= LOAD USER COMPLAINTS =================
-function loadComplaints(){
-
-let list = document.getElementById("complaintList");
-if(!list) return;
+function loadAdminComplaints(){
 
 let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-let currentUser = localStorage.getItem("currentUser");
+
+console.log("ADMIN DATA:", complaints); // debug
+
+let list = document.getElementById("adminComplaintList");
+let total = document.getElementById("totalComplaints");
+
+if(!list) return;
 
 list.innerHTML = "";
 
-complaints
-.filter(c => c.name === currentUser)
-.forEach(c => {
+if(total){
+total.innerText = complaints.length;
+}
 
-let li = document.createElement("li");
+complaints.forEach((c,index)=>{
 
-li.innerText =
-c.id + " | " +
-c.name + " | " +
-c.text + " | " +
-c.status + " | " +
-c.date;
+let tr = document.createElement("tr");
 
-list.appendChild(li);
+tr.innerHTML =
+"<td>"+c.name+"</td>" +
+"<td>"+c.text+"</td>" +
+"<td>"+c.status+"</td>" +
+"<td><button onclick='resolveComplaint("+index+")'>Resolve</button></td>";
+
+list.appendChild(tr);
 
 });
 }
@@ -170,6 +174,5 @@ alert("Connect this to backend for real update");
 
 // ================= PAGE LOAD =================
 window.onload = function(){
-loadComplaints();
 loadAdminComplaints();
 };
