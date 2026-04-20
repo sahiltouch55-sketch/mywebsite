@@ -169,11 +169,15 @@ list.appendChild(tr);
 });
 }
 // ================= RESOLVE COMPLAINT (FRONTEND ONLY) =================
-function resolveComplaint(index){
-alert("Connect this to backend for real update");
+function resolveComplaint(index) {
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+    complaints[index].status = "Resolved";
+
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+
+    loadAdminComplaints(); // refresh table
 }
-
-
 // ================= PAGE LOAD =================
 window.onload = function(){
 loadAdminComplaints();
