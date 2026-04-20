@@ -101,36 +101,41 @@ loadComplaints();
 }
 
 // ================= LOAD USER COMPLAINTS =================
-function loadAdminComplaints(){
+function loadComplaints(){
+
+let list = document.getElementById("complaintList");
+if(!list) return;
 
 let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
-
-console.log("ADMIN DATA:", complaints); // debug
-
-let list = document.getElementById("adminComplaintList");
-let total = document.getElementById("totalComplaints");
-
-if(!list) return;
+let currentUser = localStorage.getItem("currentUser");
 
 list.innerHTML = "";
 
-if(total){
-total.innerText = complaints.length;
+if(!currentUser){
+list.innerHTML = "<li>Please login first</li>";
+return;
 }
 
-complaints.forEach((c,index)=>{
+let userComplaints = complaints.filter(c => c.name === currentUser);
 
-let tr = document.createElement("tr");
+if(userComplaints.length === 0){
+list.innerHTML = "<li>No complaints found</li>";
+return;
+}
 
-tr.innerHTML =
-"<td>"+c.name+"</td>" +
-"<td>"+c.text+"</td>" +
-"<td>"+c.status+"</td>" +
-"<td><button onclick='resolveComplaint("+index+")'>Resolve</button></td>";
+userComplaints.forEach((c)=>{
+let li = document.createElement("li");
 
-list.appendChild(tr);
+li.innerText =
+c.id + " | " +
+c.name + " | " +
+c.text + " | " +
+c.status + " | " +
+c.date;
 
+list.appendChild(li);
 });
+
 }
 // ================= ADMIN LOAD COMPLAINTS =================
 function loadAdminComplaints(){
